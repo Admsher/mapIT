@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Intro2.dart';
-
+import 'package:navi/Homescreen/Homescreen.dart';
+import 'package:navi/Navigation.dart';
+import 'package:navi/main.dart';
 class Intro3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -97,7 +99,9 @@ class Intro3 extends StatelessWidget {
                                         color: Color.fromARGB(255, 78, 89, 78),
                                       ),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>infoCard()));
+                                    },
                                   ),
                                 ],
                               ),
@@ -105,7 +109,8 @@ class Intro3 extends StatelessWidget {
                       ]))),
                 ])),
             Container(
-              padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+              alignment: Alignment.bottomCenter, 
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

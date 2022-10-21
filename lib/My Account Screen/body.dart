@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Profilepic.dart';
 import 'ProfileMenu.dart';
+import 'Settings Screen/Settings.dart';
 class Body extends StatelessWidget{
   @override
   Widget build(BuildContext context){
@@ -78,7 +79,7 @@ Container(
             ProfileMenuCard(
             text: "Settings", 
             //icon:
-            press: (){},
+            press: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>SettingsPage()));},
             ),
             SizedBox(height: 1),
             ProfileMenuCard(

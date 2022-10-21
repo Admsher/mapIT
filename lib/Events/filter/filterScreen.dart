@@ -18,15 +18,7 @@ class filter extends StatelessWidget {
                   'Filters',
                   style: TextStyle(fontSize: 25),
                 ),
-                Container(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.pop(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => events()));
-                        },
-                        child: Icon(Icons.cancel,color: Colors.black,))),
+               
               ],
             ),
             Divider(
@@ -105,12 +97,28 @@ class filter extends StatelessWidget {
             Container(
               padding: EdgeInsets.fromLTRB(0, 90, 0, 0),
               child: Row(
-               
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text("Apply Filter"),style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 255, 72, 0),),),
-                  ElevatedButton(onPressed: () {}, child: Text("Clear Filter"),style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 255, 72, 0),),)
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Apply Filter"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 255, 72, 0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Clear Filter",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 72, 0)),),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                  )
                 ],
               ),
             )
@@ -148,7 +156,7 @@ class filter extends StatelessWidget {
                 value: check,
                 onChanged: (val) {
                   setState() {
-                    (check = (true));
+                    check ?(val):true ;
                   }
                 })
           ],
@@ -156,7 +164,7 @@ class filter extends StatelessWidget {
       ),
     );
   }
-
+  
   bool chDrama = false;
   bool chDance = false;
   bool chMusic = false;
@@ -164,6 +172,11 @@ class filter extends StatelessWidget {
   bool chDay = false;
   bool chNight = false;
   bool toggleValue = false;
+  ToggleButton() {
+    setState(val) {
+      toggleValue = !toggleValue;
+    }
+  }
   GestureDetector _buildToggleOption(
     BuildContext context,
     String title,
@@ -235,9 +248,5 @@ class filter extends StatelessWidget {
     );
   }
 
-  ToggleButton() {
-    setState() {
-      toggleValue = !toggleValue;
-    }
-  }
+  
 }

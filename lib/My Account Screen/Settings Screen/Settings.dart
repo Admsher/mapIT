@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navi/My Account Screen/Myaccount.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -14,7 +15,16 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               SizedBox(height: 20),
               Row(
-                children: [Icon(Icons.arrow_back)],
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileScreen()));
+                      },
+                      child: Icon(Icons.arrow_back))
+                ],
               ),
               SizedBox(height: 40),
               Row(

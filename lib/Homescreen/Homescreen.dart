@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'info.dart';
-
+import 'package:navi/Events/events.dart';
+import 'package:navi/My Account Screen/Myaccount.dart';
+import 'package:navi/Navigation.dart';
+import 'package:navi/search/searchBar.dart';
 class infoCard extends StatelessWidget {
-  int _selectedIndex = 0;
+   int _selectIndex = 0;
+ 
+  // void onTapped(int index) {
+  //   setState() {
+  //     _selectIndex = index;
+  //   }
 
-  void onTapped(int index) {
-    setState() {
-      _selectedIndex = index;
-    }
-  }
+  //   ;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Stack(
         children: [
           SingleChildScrollView(
             child: Container(
-              padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 70, 0, 0),
               color: Color.fromARGB(235, 250, 250, 250),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +32,7 @@ class infoCard extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
                       child: Text(
-                        "Events",
+                        "Recommended Places",
                         style: TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 27,
@@ -40,32 +46,7 @@ class infoCard extends StatelessWidget {
                         availibility: 'Closed',
                         timings: '||Opens 4:00pm',
                         typeOfDining: 'Dining||Takeaway'),
-                    info(
-                        title: 'RED CHILLIES',
-                        availibility: 'Closed',
-                        timings: '||Opens 4:00pm',
-                        typeOfDining: 'Dining||Takeaway'),
-                    info(
-                        title: 'RED CHILLIES',
-                        availibility: 'Closed',
-                        timings: '||Opens 4:00pm',
-                        typeOfDining: 'Dining||Takeaway'),
-                    info(
-                        title: 'RED CHILLIES',
-                        availibility: 'Closed',
-                        timings: '||Opens 4:00pm',
-                        typeOfDining: 'Dining||Takeaway'),
-                    info(
-                        title: 'RED CHILLIES',
-                        availibility: 'Closed',
-                        timings: '||Opens 4:00pm',
-                        typeOfDining: 'Dining||Takeaway'),
-                    info(
-                        title: 'RED CHILLIES',
-                        availibility: 'Closed',
-                        timings: '||Opens 4:00pm',
-                        typeOfDining: 'Dining||Takeaway'),
-                  ]),
+                    ]),
                 ],
               ),
             ),
@@ -81,30 +62,53 @@ class infoCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Icon(Icons.map),
                   Text("Map",
                   style: TextStyle(
                     fontWeight: FontWeight.bold
                   ),),
-                Icon(Icons.pin_drop)
+                
                 ],
               ),
               onPressed: () {},
             ),
-          )
+          ),
+         Container(
+              height:30,
+              decoration: BoxDecoration(borderRadius:BorderRadius.circular(20),color: Color.fromARGB(255, 187, 184, 184), ),
+              alignment: Alignment.topCenter,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => searchPage()));
+                },
+                child: Row(
+                  
+                  children: [
+                    Icon(Icons.search,color: Colors.black,),
+                    Text("Search",
+                    style: TextStyle(color: Colors.black,
+                    fontSize: 17),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+     bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Event'),
           BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
           BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.redAccent,
+        
+        selectedItemColor: Color.fromARGB(255, 255, 82, 82),
         unselectedItemColor: Colors.black,
       ),
     );
-  }
-}
+  
+  }}
+

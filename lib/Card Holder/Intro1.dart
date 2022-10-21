@@ -6,7 +6,7 @@ class Intro1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(0, 105, 0, 0),
+        padding: EdgeInsets.fromLTRB(0, 100, 0, 40),
         color: Color.fromRGBO(33, 185, 22, 1),
         child: Column(
           children: [
@@ -83,8 +83,8 @@ class Intro1 extends StatelessWidget {
                 ])),
           
           Container(
-              padding:EdgeInsets.fromLTRB(0, 100, 0, 0  ) ,
-              
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

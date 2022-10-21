@@ -107,7 +107,8 @@ class Intro2 extends StatelessWidget {
                       ]))),
                 ])),
             Container(
-              padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
