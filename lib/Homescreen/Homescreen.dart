@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
 import 'info.dart';
 import 'package:navi/Events/events.dart';
-import 'package:navi/My Account Screen/Myaccount.dart';
+import 'package:navi/myAccountScreen/Myaccount.dart';
 import 'package:navi/Navigation.dart';
 import 'package:navi/search/searchBar.dart';
-class infoCard extends StatelessWidget {
-   int _selectIndex = 0;
- 
-  // void onTapped(int index) {
-  //   setState() {
-  //     _selectIndex = index;
-  //   }
+import 'package:navi/Saved/Saved.dart';
 
-  //   ;
-  // }
+class infoCard extends StatelessWidget {
+  int _selectIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Stack(
         children: [
+          Container(
+            child: MyNavigation(
+              color1: Color.fromARGB(255, 255, 85, 0),
+              press1: () {},
+              color2: Colors.black,
+              press2: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => events()));
+              },
+              color3: Colors.black,
+              press3: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => saved()));
+              },
+              color4: Colors.black,
+              press4: () {},
+              color5: Colors.black,
+              press5: (() {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+              }),
+            ),
+          ),
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -46,13 +62,13 @@ class infoCard extends StatelessWidget {
                         availibility: 'Closed',
                         timings: '||Opens 4:00pm',
                         typeOfDining: 'Dining||Takeaway'),
-                    ]),
+                  ]),
                 ],
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(160, 0, 160, 10),
+            margin: EdgeInsets.fromLTRB(160, 0, 160, 50),
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -63,52 +79,43 @@ class infoCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.map),
-                  Text("Map",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),),
-                
+                  Text(
+                    "Map",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
               onPressed: () {},
             ),
           ),
-         Container(
-              height:30,
-              decoration: BoxDecoration(borderRadius:BorderRadius.circular(20),color: Color.fromARGB(255, 187, 184, 184), ),
-              alignment: Alignment.topCenter,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => searchPage()));
-                },
-                child: Row(
-                  
-                  children: [
-                    Icon(Icons.search,color: Colors.black,),
-                    Text("Search",
-                    style: TextStyle(color: Colors.black,
-                    fontSize: 17),
-                    ),
-                  ],
-                ),
+          Container(
+            height: 30,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color.fromARGB(255, 187, 184, 184),
+            ),
+            alignment: Alignment.topCenter,
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => searchPage()));
+              },
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
+                  Text(
+                    "Search",
+                    style: TextStyle(color: Colors.black, fontSize: 17),
+                  ),
+                ],
               ),
             ),
+          ),
         ],
-      ),
-     bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Event'),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        
-        selectedItemColor: Color.fromARGB(255, 255, 82, 82),
-        unselectedItemColor: Colors.black,
       ),
     );
-  
-  }}
-
+  }
+}

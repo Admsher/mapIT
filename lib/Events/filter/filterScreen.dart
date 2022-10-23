@@ -1,170 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:navi/Events/events.dart';
 
-class filter extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: ListView(
-          children: [
-            SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(),
-                Text(
-                  'Filters',
-                  style: TextStyle(fontSize: 25),
-                ),
-               
-              ],
-            ),
-            Divider(
-              height: 20,
-              thickness: 0,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                child: Column(children: [
-              Container(
-                child: Row(
-                  children: [
-                    Text(
-                      "Genre",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              buildSelectOption(
-                context,
-                'Dance',
-                chDance,
-              ),
-              buildSelectOption(
-                context,
-                'Music',
-                chMusic,
-              ),
-              buildSelectOption(
-                context,
-                'Drama',
-                chDrama,
-              ),
-              buildSelectOption(
-                context,
-                'Comedy',
-                chComedy,
-              )
-            ])),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-            ),
-            Container(
-                child: Column(children: [
-              Container(
-                child: Row(
-                  children: [
-                    Text(
-                      "Time",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              buildSelectOption(
-                context,
-                'Day',
-                chDay,
-              ),
-              buildSelectOption(
-                context,
-                'Night',
-                chNight,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 50),
-              ),
-              _buildToggleOption(
-                context,
-                'Live',
-              )
-            ])),
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 90, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Apply Filter"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 72, 0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Clear Filter",
-                    style: TextStyle(color: Color.fromARGB(255, 255, 72, 0)),),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+class filter extends StatefulWidget {
+  const filter({super.key});
 
-  GestureDetector buildSelectOption(
-    BuildContext context,
-    String title,
-    bool check,
-  ) {
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 130, 0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Checkbox(
-                checkColor: Color.fromARGB(255, 255, 72, 0),
-                value: check,
-                onChanged: (val) {
-                  setState() {
-                    check ?(val):true ;
-                  }
-                })
-          ],
-        ),
-      ),
-    );
-  }
-  
+  @override
+  State<filter> createState() => _filter();
+}
+
+class _filter extends State<filter> {
   bool chDrama = false;
   bool chDance = false;
   bool chMusic = false;
@@ -172,81 +16,237 @@ class filter extends StatelessWidget {
   bool chDay = false;
   bool chNight = false;
   bool toggleValue = false;
-  ToggleButton() {
-    setState(val) {
-      toggleValue = !toggleValue;
+  @override
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.selected,
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Color.fromARGB(255, 249, 46, 5);
     }
+    return Color.fromARGB(255, 0, 0, 0);
   }
-  GestureDetector _buildToggleOption(
-    BuildContext context,
-    String title,
-  ) {
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 130, 0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Lato',
-                  color: Colors.black,
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: Expanded(
+          child: SizedBox(
+            width: 500,
+            child: ListView(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Filters',
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 1000),
-              height: 20,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: toggleValue
-                    ? Colors.greenAccent[100]
-                    : Color.fromARGB(255, 122, 120, 120).withOpacity(0.5),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  AnimatedPositioned(
-                    duration: Duration(milliseconds: 1000),
-                    curve: Curves.easeIn,
-                    top: 0.0,
-                    left: toggleValue ? 60 : 0,
-                    right: toggleValue ? 0 : 60,
-                    child: InkWell(
-                        onTap: ToggleButton,
-                        child: AnimatedSwitcher(
-                            duration: Duration(milliseconds: 1000),
-                            transitionBuilder:
-                                (Widget child, Animation<double> animation) {
-                              return RotationTransition(
-                                  child: child, turns: animation);
-                            },
-                            child: toggleValue
-                                ? Icon(
-                                    Icons.circle,
-                                    color: Colors.white,
-                                    size: 10.0,
-                                    key: UniqueKey(),
-                                  )
-                                : Icon(Icons.circle,
-                                    color: Color.fromARGB(255, 68, 67, 67),
-                                    size: 21,
-                                    key: UniqueKey()))),
+                Divider(
+                  height: 30,
+                  thickness: 0,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                    child: Column(children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Genre",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            )
-          ],
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Dance",
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: chDance,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                chDance = value!;
+                              });
+                            })
+                      ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Music",
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: chMusic,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                chMusic = value!;
+                              });
+                            })
+                      ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Drama",
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: chDrama,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                chDrama = value!;
+                              });
+                            })
+                      ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Comedy",
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: chComedy,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                chComedy = value!;
+                              });
+                            })
+                      ]),
+                ])),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+                ),
+                Container(
+                    child: Column(children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Time",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Day",
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: chDay,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                chDay = value!;
+                              });
+                            })
+                      ])
+                ])),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Night",
+                        style: TextStyle(
+                            fontSize: 19, fontWeight: FontWeight.bold),
+                      ),
+                      Checkbox(
+                          checkColor: Colors.white,
+                          fillColor:
+                              MaterialStateProperty.resolveWith(getColor),
+                          value: chNight,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              chNight = value!;
+                            });
+                          })
+                    ]),
+                Divider(height: 30),
+                SwitchListTile(
+                    title: Text(
+                      "Live",
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                    ),
+                    inactiveThumbColor: Color.fromARGB(255, 49, 48, 48),
+                    inactiveTrackColor: Color.fromARGB(255, 142, 137, 137),
+                    activeColor: Color.fromARGB(255, 255, 64, 0),
+                    value: toggleValue,
+                    onChanged: (bool value) =>
+                        {setState(() => toggleValue = value)}),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 90, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Apply Filter"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 255, 72, 0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Clear Filter",
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 255, 72, 0)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
-
-  
 }

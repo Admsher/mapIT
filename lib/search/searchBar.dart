@@ -30,10 +30,9 @@ class _searchPageState extends State<searchPage> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        
         child: Column(
           children: [
-            SizedBox(height: 3.0,width:40),
+            SizedBox(height: 3.0, width: 40),
             TextField(
               onChanged: (value) => updateList(value),
               style: TextStyle(color: Colors.black),
@@ -54,7 +53,9 @@ class _searchPageState extends State<searchPage> {
                   ? Center(
                       child: Text(
                         "",
-                        style: TextStyle(color: Color.fromARGB(255, 82, 80, 80), fontSize: 22),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 82, 80, 80),
+                            fontSize: 22),
                       ),
                     )
                   : ListView.builder(

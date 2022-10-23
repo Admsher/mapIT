@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navi/My Account Screen/Myaccount.dart';
+import 'package:navi/myAccountScreen/Myaccount.dart';
+import 'package:navi/darkMode/change_theme_button_widget.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -47,13 +48,25 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               buildAccountOption(
                   context, 'Personal Details', Icon(Icons.person)),
-              _buildToggleOption(
-                  context, 'Notifications', Icon(Icons.notifications)),
-              _buildToggleOption(context, 'Dark Theme', Icon(Icons.dark_mode)),
+              const buildToggleOption(),
+              // _buildToggleOption(context, 'Dark Theme', Icon(Icons.dark_mode)),
               buildAccountOption(
                   context, 'Invite A Friend', Icon(Icons.person_add)),
               buildAccountOption(
-                  context, 'Delete Account', Icon(Icons.remove_circle))
+                  context, 'Delete Account', Icon(Icons.remove_circle)),
+
+              SwitchListTile(
+                  title: Text(
+                    "Notifications",
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                  ),
+                  inactiveThumbColor: Color.fromARGB(255, 49, 48, 48),
+                  inactiveTrackColor: Color.fromARGB(255, 142, 137, 137),
+                  activeColor: Color.fromARGB(255, 255, 64, 0),
+                  value: toggleValue,
+                  onChanged: (bool value) =>
+                      {setState(() => toggleValue = value)}),
+              // changeThemeButtonWidget(),
             ],
           ),
         ),
@@ -64,26 +77,27 @@ GestureDetector buildAccountOption(
     BuildContext context, String title, Icon icon) {
   return GestureDetector(
     onTap: () {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Option 1"),
-                    Text("Option 2"),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("Close")),
-                ]);
-          });
+      // showDialog(
+      //     context: context,
+      //     builder: (BuildContext context) {
+      //       return AlertDialog(
+      //           title: Text(title),
+      //           content: Column(
+      //             mainAxisSize: MainAxisSize.min,
+      //             children: [
+      //               Text("Option 1"),
+      //               Text("Option 2"),
+      //             ],
+      // ),
+      // actions: [
+      //   TextButton(
+      //       onPressed: () {
+      //         Navigator.of(context).pop();
+      //       },
+      //       child: Text("Close")),
+      // ]);
+      // }
+      // );
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -110,77 +124,44 @@ GestureDetector buildAccountOption(
 }
 
 bool toggleValue = false;
-GestureDetector _buildToggleOption(
-    BuildContext context, String title, Icon icon) {
-  return GestureDetector(
-    onTap: () {},
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          icon,
-          Container(
-            padding: EdgeInsets.fromLTRB(0, 0, 130, 0),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          AnimatedContainer(
-            duration: Duration(milliseconds: 1000),
-            height: 20,
-            width: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: toggleValue
-                  ? Colors.greenAccent[100]
-                  : Colors.grey[100]?.withOpacity(0.5),
-            ),
-            child: Stack(
-              children: <Widget>[
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 1000),
-                  curve: Curves.easeIn,
-                  top: 0.0,
-                  left: toggleValue ? 60 : 0,
-                  right: toggleValue ? 0 : 60,
-                  child: InkWell(
-                      onTap: ToggleButton,
-                      child: AnimatedSwitcher(
-                          duration: Duration(milliseconds: 1000),
-                          transitionBuilder:
-                              (Widget child, Animation<double> animation) {
-                            return RotationTransition(
-                                child: child, turns: animation);
-                          },
-                          child: toggleValue
-                              ? Icon(
-                                  Icons.circle,
-                                  color: Colors.white,
-                                  size: 10.0,
-                                  key: UniqueKey(),
-                                )
-                              : Icon(Icons.circle,
-                                  color: Colors.white,
-                                  size: 21,
-                                  key: UniqueKey()))),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    ),
-  );
+
+class buildToggleOption extends StatefulWidget {
+  const buildToggleOption({super.key});
+
+  @override
+  State<buildToggleOption> createState() => _buildToggleOption(
+      text: "Notifications", icon: Icon(Icons.notifications));
 }
 
-ToggleButton() {
-  setState() {
-    toggleValue = !toggleValue;
+class _buildToggleOption extends State<buildToggleOption> {
+  _buildToggleOption({
+    Key? key,
+    required this.text,
+    required this.icon,
+  });
+  final String text;
+  final Icon icon;
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return Container(
+      child: Row(
+        children: [
+          icon,
+          SwitchListTile(
+              title: Text(
+                text,
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              ),
+              inactiveThumbColor: Color.fromARGB(255, 49, 48, 48),
+              inactiveTrackColor: Color.fromARGB(255, 142, 137, 137),
+              activeColor: Color.fromARGB(255, 255, 64, 0),
+              value: toggleValue,
+              onChanged: (bool value) => {setState(() => toggleValue = value)}),
+        ],
+      ),
+    );
   }
 }

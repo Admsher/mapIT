@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:navi/Homescreen/Homescreen.dart';
 import 'infoCopy.dart';
 import 'filter/filterScreen.dart';
 import 'package:navi/search/searchBar.dart';
+import 'package:navi/Navigation.dart';
+import 'package:navi/Saved/Saved.dart';
+import 'package:navi/myAccountScreen/Myaccount.dart';
 
 class events extends StatelessWidget {
-  int _selectedIndex = 1;
-
-  void onTapped(int index) {
-    setState() {
-      _selectedIndex = index;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +15,27 @@ class events extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Stack(
           children: [
+            MyNavigation(
+              color1: Color.fromARGB(255, 0, 0, 0),
+              press1: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => infoCard()));
+              },
+              color2: Color.fromARGB(255, 255, 85, 0),
+              press2: () {},
+              color3: Colors.black,
+              press3: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => saved()));
+              },
+              color4: Colors.black,
+              press4: () {},
+              color5: Colors.black,
+              press5: (() {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+              }),
+            ),
             SingleChildScrollView(
               child: Container(
                 margin: EdgeInsets.fromLTRB(0, 70, 0, 0),
@@ -82,7 +99,7 @@ class events extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(150, 0, 150, 10),
+              margin: EdgeInsets.fromLTRB(150, 0, 150, 40),
               padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
@@ -104,8 +121,11 @@ class events extends StatelessWidget {
               ),
             ),
             Container(
-              height:30,
-              decoration: BoxDecoration(borderRadius:BorderRadius.circular(20),color: Color.fromARGB(255, 187, 184, 184), ),
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Color.fromARGB(255, 187, 184, 184),
+              ),
               alignment: Alignment.topCenter,
               child: TextButton(
                 onPressed: () {
@@ -113,12 +133,14 @@ class events extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => searchPage()));
                 },
                 child: Row(
-                  
                   children: [
-                    Icon(Icons.search,color: Colors.black,),
-                    Text("Search",
-                    style: TextStyle(color: Colors.black,
-                    fontSize: 17),
+                    Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      "Search",
+                      style: TextStyle(color: Colors.black, fontSize: 17),
                     ),
                   ],
                 ),
@@ -126,18 +148,6 @@ class events extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Event'),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.redAccent,
-        unselectedItemColor: Colors.black,
       ),
     );
   }

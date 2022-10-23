@@ -1,41 +1,108 @@
-
-
 import 'package:flutter/material.dart';
 import 'Homescreen/Homescreen.dart';
-import 'My Account Screen/Myaccount.dart';
+import 'myAccountScreen/Myaccount.dart';
 import 'Events/events.dart';
-// class MyNavigation extends StatelessWidget {
-   
-//   int _currentIndex = 0;
-//    final List<Widget> _children =[
-//     infoCard(),
-//     events(),
-//     ProfileScreen()
 
-//    ];
-//   void onTapped(int index) {
-//     setState() {
-//       _currentIndex = index;
-//     }
-
-//     ;
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       bottomNavigationBar: BottomNavigationBar(
-//         items: [
-//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-//           BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Event'),
-//           BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
-//           BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-//           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-//         ],
-        
-//         selectedItemColor: Color.fromARGB(255, 255, 82, 82),
-//         unselectedItemColor: Colors.black,
-//       ),
-//     );
-//   }
-// }
+class MyNavigation extends StatelessWidget {
+  MyNavigation({
+    Key? key,
+    required this.color1,
+    required this.color2,
+    required this.color3,
+    required this.color4,
+    required this.color5,
+    required this.press1,
+    required this.press2,
+    required this.press3,
+    required this.press4,
+    required this.press5,
+  }) : super(key: key);
+  final Color color1, color2, color3, color4, color5;
+  final VoidCallback press1, press2, press3, press4, press5;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Container(
+          alignment: Alignment.bottomCenter,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextButton(
+                onPressed: 
+                  press1,
+                
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.pin_drop,
+                      color: color1,
+                    ),
+                    Text("Places"),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed:
+                  press2,
+                
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.event,
+                      color: color2,
+                    ),
+                    Text("Events"),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: 
+                  press3,
+                
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.bookmark,
+                      color: color3,
+                    ),
+                    Text("Saved"),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: 
+                  press4,
+                
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.newspaper,
+                      color: color4,
+                    ),
+                    Text("News"),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: press5,
+                
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.person_pin,
+                      color: color5,
+                    ),
+                    Text("Account"),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ));
+  }
+}
