@@ -1,4 +1,6 @@
-import 'dart:ui';
+
+import 'package:navi/ui/Homescreen/homescreen.dart';
+
 import 'searchModel.dart';
 import 'package:flutter/material.dart';
 
@@ -32,20 +34,25 @@ class _searchPageState extends State<searchPage> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            SizedBox(height: 3.0, width: 40),
-            TextField(
-              onChanged: (value) => updateList(value),
-              style: TextStyle(color: Colors.black),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color.fromARGB(255, 216, 215, 215),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide.none),
-                hintText: "Search",
-                prefixIcon: Icon(Icons.search),
-                prefixIconColor: Color.fromARGB(255, 0, 0, 0),
-              ),
+            Row(
+              children: [
+                
+                SizedBox(height: 3.0, width: 40),
+                TextField(
+                  onChanged: (value) => updateList(value),
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 216, 215, 215),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide.none),
+                    hintText: "Search",
+                    prefixIcon: Icon(Icons.search),
+                    prefixIconColor: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 20.0),
             Expanded(

@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:navi/Homescreen/Homescreen.dart';
+import 'package:navi/ui/Homescreen/homescreen.dart';
+import 'package:navi/ui/Places/places.dart';
+import 'package:page_transition/page_transition.dart';
 import 'infoCopy.dart';
 import 'filter/filterScreen.dart';
-import 'package:navi/search/searchBar.dart';
-import 'package:navi/Navigation.dart';
-import 'package:navi/Saved/Saved.dart';
-import 'package:navi/myAccountScreen/Myaccount.dart';
+import 'package:navi/ui/search/searchBar.dart';
+import 'package:navi/ui/Navigation.dart';
+import 'package:navi/ui/Saved/Saved.dart';
+import 'package:navi/ui/myAccountScreen/Myaccount.dart';
+import 'package:navi/ui/Loadingscreen/Loading.dart';
+import 'package:navi/ui/Places/info.dart';
 
-class events extends StatelessWidget {
+
+
+class events extends StatefulWidget {
+  const events({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  State<events> createState() => _eventsState();
+}
+
+class _eventsState extends State<events> {
+  
+  static const String routeName ='/event-listing';
+ // static Route route({required List<events> events})
+  // {
+   
+  // }
+  bool isLoading = false;
+  @override
+  Widget build(BuildContext context) =>  isLoading
+      ? const Loading():
+   
+
+Scaffold(
       body: Container(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Stack(
@@ -19,21 +42,21 @@ class events extends StatelessWidget {
               color1: Color.fromARGB(255, 0, 0, 0),
               press1: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => infoCard()));
+                    PageTransition(child: infoCard(), type: PageTransitionType.leftToRight));
               },
               color2: Color.fromARGB(255, 255, 85, 0),
               press2: () {},
               color3: Colors.black,
               press3: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => saved()));
+                    context, PageTransition(child: saved(), type: PageTransitionType.rightToLeft));
               },
               color4: Colors.black,
               press4: () {},
               color5: Colors.black,
               press5: (() {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+                    PageTransition(child: ProfileScreen(), type: PageTransitionType.rightToLeft));
               }),
             ),
             SingleChildScrollView(
@@ -56,12 +79,13 @@ class events extends StatelessWidget {
                       ),
                     ]),
                     Column(children: [
-                      info(
-                        title: 'Comedy Night',
-                        availibility: 'at B Dome Auditorium',
-                        timings: 'From 7 to 9',
-                        typeOfDining: '',
-                      ),
+                      // info(
+                      //   id: 1,
+                      //   title: 'Comedy Night',
+                      //   availibility: 'at B Dome Auditorium',
+                      //   timings: 'From 7 to 9',
+                      //   tags: ['Day','Comedy'],
+                      // ),
                     ]),
                   ],
                 ),
@@ -71,12 +95,15 @@ class events extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(0, 110, 0, 0),
               alignment: Alignment.topLeft,
               child: ElevatedButton(
+                onPressed: (){}, 
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 255, 55, 0),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12))),
+                        borderRadius: BorderRadius.circular(12))
+                        ),
+                
                 child: Container(
-                  width: 65,
+                  width: 69,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -88,14 +115,14 @@ class events extends StatelessWidget {
                     ],
                   ),
                 ),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                            content: Container(width: 410, child: filter()));
-                      });
-                },
+                // onPressed: () {
+                //   showDialog(
+                //       context: context,
+                //       builder: (BuildContext context) {
+                //         return AlertDialog(
+                //             content: Container(width: 410, child: filter()));
+                //       });
+                //},
               ),
             ),
             Container(
@@ -117,38 +144,51 @@ class events extends StatelessWidget {
                     ),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () { 
+                     Navigator.push(
+                        context,
+                        PageTransition(
+                            child: homeScreen(),
+                            type: PageTransitionType.topToBottom));
+                  },
               ),
             ),
-            Container(
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color.fromARGB(255, 187, 184, 184),
-              ),
-              alignment: Alignment.topCenter,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => searchPage()));
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      "Search",
-                      style: TextStyle(color: Colors.black, fontSize: 17),
-                    ),
-                  ],
+           Container(
+                height: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+                alignment: Alignment.topCenter,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => searchPage()));
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                     
+                      Text(
+                        "Search",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      ),
+                       Row(
+                         children: [
+                           Icon(
+                            Icons.search,
+                            color: Colors.black,
+                      ),
+                      CircleAvatar(radius: 13,)
+                         ],
+                       ),
+                    ],
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
-}
+

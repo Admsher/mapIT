@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navi/ui/myAccountScreen/Myaccount.dart';
 
 class TripPage extends StatelessWidget {
   @override
@@ -8,8 +9,14 @@ class TripPage extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(height: 20),
-              Row(
-                children: [Icon(Icons.arrow_back)],
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context,
+                      MaterialPageRoute(builder: (context) => ProfileScreen()));
+                },
+                child: Row(
+                  children: [Icon(Icons.arrow_back)],
+                ),
               ),
               SizedBox(height: 40),
               Row(

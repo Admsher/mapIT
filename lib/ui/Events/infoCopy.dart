@@ -4,12 +4,16 @@ class info extends StatelessWidget {
   @override
   const info({
     Key? key,
+    required this.id,
     required this.title,
     required this.availibility,
     required this.timings,
-    required this.typeOfDining,
+    required this.tags,
+    
   }) : super(key: key);
-  final String title, availibility, timings, typeOfDining;
+  final int id;
+  final String title, availibility, timings;
+  final List<String> tags;
   Widget build(BuildContext context) {
     //,icon;
 
@@ -30,7 +34,9 @@ class info extends StatelessWidget {
 
                   child: Image.asset(
                     'assets/images/img.png',
+                  fit: BoxFit.cover,
                   ),
+                  
                 ),
               ],
             ),

@@ -16,9 +16,11 @@ class ProfileMenuCard extends StatelessWidget{
     Key ? key,
     required this.text,
     required this.press,
+    required this.icon
   }
   ):super(key: key);
-    final String text;  //,icon;
+    final String text;  
+    final Icon icon;
     final VoidCallback press;
 
   Widget build(BuildContext context)
@@ -40,19 +42,28 @@ class ProfileMenuCard extends StatelessWidget{
 
         child: 
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+         
             const SizedBox(width: 40),
             Expanded(
               child: 
-              Text(
-                text,
-                style:const TextStyle (
-                fontSize: 20,
-                color: Colors.black,  
-                fontFamily: 'Lato',
-                ),
+              Row(
+                children: [
+                  Text(
+                    text,
+                    style:const TextStyle (
+                    fontSize: 20,
+                    color: Colors.black,  
+                    fontFamily: 'Lato',
+                    ),
+                  ),
+               
+                ]
+                ,
               ),
             ),
+            icon,  
           ],
         ),              
         ),

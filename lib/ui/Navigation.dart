@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Homescreen/Homescreen.dart';
+import 'Homescreen/homescreen.dart';
 import 'myAccountScreen/Myaccount.dart';
 import 'Events/events.dart';
 
@@ -40,7 +40,9 @@ class MyNavigation extends StatelessWidget {
                       Icons.pin_drop,
                       color: color1,
                     ),
-                    Text("Places"),
+                    Text("Places",
+                    style: TextStyle(color: Colors.black),),
+
                   ],
                 ),
               ),
@@ -54,7 +56,8 @@ class MyNavigation extends StatelessWidget {
                       Icons.event,
                       color: color2,
                     ),
-                    Text("Events"),
+                    Text("Events",
+                    style: TextStyle(color: Colors.black),),
                   ],
                 ),
               ),
@@ -68,7 +71,8 @@ class MyNavigation extends StatelessWidget {
                       Icons.bookmark,
                       color: color3,
                     ),
-                    Text("Saved"),
+                    Text("Saved",
+                    style: TextStyle(color: Colors.black),),
                   ],
                 ),
               ),
@@ -82,7 +86,8 @@ class MyNavigation extends StatelessWidget {
                       Icons.newspaper,
                       color: color4,
                     ),
-                    Text("News"),
+                    Text("News",
+                    style: TextStyle(color: Colors.black),),
                   ],
                 ),
               ),
@@ -95,7 +100,8 @@ class MyNavigation extends StatelessWidget {
                       Icons.person_pin,
                       color: color5,
                     ),
-                    Text("Account"),
+                    Text("Account",
+                    style: TextStyle(color: Colors.black),),
                   ],
                 ),
               ),

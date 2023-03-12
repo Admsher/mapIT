@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navi/myAccountScreen/Myaccount.dart';
-import 'package:navi/darkMode/change_theme_button_widget.dart';
+import 'package:navi/ui/myAccountScreen/Myaccount.dart';
+import 'package:navi/ui/darkMode/change_theme_button_widget.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -21,10 +22,11 @@ class _SettingsPageState extends State<SettingsPage> {
                       onPressed: () {
                         Navigator.pop(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => ProfileScreen()));
+                           
+                            PageTransition(
+                               child:ProfileScreen(), type: PageTransitionType.topToBottom));
                       },
-                      child: Icon(Icons.arrow_back))
+                      child: Icon(Icons.arrow_back_ios_new_sharp,color: Colors.black,))
                 ],
               ),
               SizedBox(height: 40),
@@ -47,25 +49,31 @@ class _SettingsPageState extends State<SettingsPage> {
                 height: 10,
               ),
               buildAccountOption(
-                  context, 'Personal Details', Icon(Icons.person)),
-              const buildToggleOption(),
+                  context, 'Personal Details', Icon(Icons.person),),
+              
               // _buildToggleOption(context, 'Dark Theme', Icon(Icons.dark_mode)),
               buildAccountOption(
-                  context, 'Invite A Friend', Icon(Icons.person_add)),
+                  context, 'Invite A Friend', Icon(Icons.person_add),),
               buildAccountOption(
-                  context, 'Delete Account', Icon(Icons.remove_circle)),
+                  context, 'Delete Account', Icon(Icons.remove_circle),),
 
-              SwitchListTile(
-                  title: Text(
-                    "Notifications",
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                  ),
-                  inactiveThumbColor: Color.fromARGB(255, 49, 48, 48),
-                  inactiveTrackColor: Color.fromARGB(255, 142, 137, 137),
-                  activeColor: Color.fromARGB(255, 255, 64, 0),
-                  value: toggleValue,
-                  onChanged: (bool value) =>
-                      {setState(() => toggleValue = value)}),
+           
+                
+              
+               
+                  SwitchListTile(
+                      title: Text(
+                        "Notifications",
+                        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                      ),
+                      inactiveThumbColor: Color.fromARGB(255, 49, 48, 48),
+                      inactiveTrackColor: Color.fromARGB(255, 142, 137, 137),
+                      activeColor: Color.fromARGB(255, 255, 64, 0),
+                      value: toggleValue,
+                      onChanged: (bool value) =>
+                          {setState(() => toggleValue = value)}),
+               
+              
               // changeThemeButtonWidget(),
             ],
           ),
@@ -74,9 +82,15 @@ class _SettingsPageState extends State<SettingsPage> {
 }
 
 GestureDetector buildAccountOption(
-    BuildContext context, String title, Icon icon) {
+    BuildContext context, String title, Icon icon,//void press
+    ) {
   return GestureDetector(
     onTap: () {
+     
+      // press;
+      
+     
+     
       // showDialog(
       //     context: context,
       //     builder: (BuildContext context) {
@@ -111,7 +125,7 @@ GestureDetector buildAccountOption(
               title,
               style: TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
@@ -125,43 +139,3 @@ GestureDetector buildAccountOption(
 
 bool toggleValue = false;
 
-class buildToggleOption extends StatefulWidget {
-  const buildToggleOption({super.key});
-
-  @override
-  State<buildToggleOption> createState() => _buildToggleOption(
-      text: "Notifications", icon: Icon(Icons.notifications));
-}
-
-class _buildToggleOption extends State<buildToggleOption> {
-  _buildToggleOption({
-    Key? key,
-    required this.text,
-    required this.icon,
-  });
-  final String text;
-  final Icon icon;
-
-  @override
-  Widget build(
-    BuildContext context,
-  ) {
-    return Container(
-      child: Row(
-        children: [
-          icon,
-          SwitchListTile(
-              title: Text(
-                text,
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-              ),
-              inactiveThumbColor: Color.fromARGB(255, 49, 48, 48),
-              inactiveTrackColor: Color.fromARGB(255, 142, 137, 137),
-              activeColor: Color.fromARGB(255, 255, 64, 0),
-              value: toggleValue,
-              onChanged: (bool value) => {setState(() => toggleValue = value)}),
-        ],
-      ),
-    );
-  }
-}
